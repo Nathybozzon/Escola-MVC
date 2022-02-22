@@ -1,0 +1,103 @@
+<%- include("../partials/header"); %>
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="row mt-5">
+                    <div class="col-4">
+                        <h3>Lista de alunos</h3>
+                    </div>
+                    <div class="col-4">
+                        <a href="alunos/cadastroAluno" class="btn btn-outline-success">Cadastrar Alunos</a>
+                    </div>
+                    <form action="/pesquisar" method="GET" class="form-inline col-4">
+                        <!-- utiliza o get pois esta pegando o valor -->
+                        <input class="form-control mr-sm-2" type="text" placeholder="Pesquisar" aria-label="Pesquisar"
+                            name="pesquisa">
+                        <button class="btn btn-light" type="submit" value="Search"><svg
+                                xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-search" viewBox="0 0 16 16">
+                                <path
+                                    d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                            </svg></button>
+                    </form>
+                </div>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Nome do Aluno</th>
+                            <th>Nome do Responsável</th>
+                            <th>Contato</th>
+                            <th>Endereço</th>
+                            <th>Matrícula (RA)</th>
+                            <th>Editar</th>
+                        </tr>
+                    </thead>
+                    <!-- criação do cabeçalho -->
+                    <tbody>
+
+                        <% resultado.forEach(function(aluno){ %>
+                            <tr>
+                                <td>
+                                    <%= aluno.nomeAluno %>
+                                </td>
+                                <td>
+                                    <%= aluno.nomeResp %>
+                                </td>
+                                <td>
+                                    <%= aluno.contato %>
+                                </td>
+                                <td>
+                                    <%= aluno.endereco %>
+                                </td>
+                                <td>
+                                    <%= aluno.matricula %>
+                                </td>
+                                <td>
+                                    <a class="btn btn-outline-warning" href="/alunos/editarAluno/<%=aluno._id %>">Editar</a>
+                                    <a class="btn btn-outline-danger" href="/alunos/deletarAluno/<%=aluno._id %>" data-toggle="mo
+                                    dal" data-target="#modal">Deletar</a>
+
+                                </td>
+                            </tr>
+                            <div class="modal fade" id="modal" tabindex="-1" role="dialog"
+                                aria-labelledby="modal" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="TituloModal">Atenção!
+                                            </h5>
+                                            <button type="button" class="close" data-dismiss="modal"
+                                                aria-label="Fechar">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                          Você tem certeza disso? Ao clicar em deletar os dados serão perdidos.
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-dismiss="modal">Fechar</button>
+                                            <a class="btn btn-danger"
+                                                href="/alunos/deletarAluno/<%=aluno._id %>">Deletar</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <% }) %>
+
+                                <% if (resultado==0){ %>
+                                    <tr>
+                                        <td colspan="12" class="alert alert-warning">Nenhum aluno cadastrado! </td>
+                                    </tr>
+                                    <% } %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+
+    <%- include("../partials/footer"); %>

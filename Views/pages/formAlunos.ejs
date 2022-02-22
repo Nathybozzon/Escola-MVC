@@ -1,0 +1,57 @@
+<%- include("../partials/header"); %>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1 class="mt-5">Cadastro de Alunos
+                <hr>
+            </h1>
+            <form action="/alunos/cadastroAluno" method="POST">
+                <div class="input-group">
+                    <div class=input-group-prepend>
+                        <span class="input-group-text">Nome do Aluno</span>
+                    </div>
+                    <label for="nome_aluno"></label>
+                    <input onkeyup="maiuscula(this)" class="form-control" type="text"
+                        id="nome_aluno" name="nome_aluno" placeholder="Nome do Aluno" required>
+                </div>
+                <div class="input-group mt-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Nome do Responsável</span>
+                    </div>
+                    <label for="nome_resp"></label>
+                    <input onkeyup="maiuscula(this)" class="form-control" type="text"
+                        id="nome_resp" name="nome_resp" placeholder="Nome do Responsável" required>
+                </div>
+                <div class="input-group mt-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Contato</span>
+                    </div>
+                    <label for="contato"></label>
+                    <input class="form-control" type="number" id="contato" name="contato"
+                       placeholder="(00)0000-00000" required>
+                </div>
+                <div class="input-group mt-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Endereço</span>
+                    </div>
+                    <label for="end"></label>
+                    <input onkeyup="maiuscula(this)" class="form-control" type="text" id="end" name="end" placeholder="Rua dos bobos, 00" required>
+                </div>
+                <div class="input-group mt-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Matrícula (RA)</span>
+                    </div>
+                    <label for="ra"></label>
+                    <input class="form-control" type="number" id="ra" name="ra" placeholder="Matrícula" required>
+                </div>
+                <button onclick="enviar_form(this)" class="btn btn-outline-success mb-5 mt-3" type="submit">Enviar</button>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+
+<%- include("../partials/footer"); %>
